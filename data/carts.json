@@ -1,0 +1,27 @@
+[
+  {
+    "producto": "Bmw Serie 3",
+    "quantity": 2,
+    "id": 1
+  },
+  {
+    "producto": "Audi A4",
+    "quantity": 7,
+    "id": 2
+  },
+  {
+    "producto": "Audi R9",
+    "quantity": 1,
+    "id": 3
+  },
+  {
+    "producto": "Audi",
+    "quantity": 8,
+    "id": 4
+  },
+  {
+    "producto": "Bmw X5",
+    "quantity": 3,
+    "id": 5
+  }
+]
