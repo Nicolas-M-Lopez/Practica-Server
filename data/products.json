@@ -1,0 +1,39 @@
+[
+  {
+    "id": 0,
+    "title": "Audi R9",
+    "description": "Esta nueva gama de audi es deportiva",
+    "price": 80000,
+    "thumbnail": "sin imagen",
+    "stock": 10
+  },
+  {
+    "id": 2,
+    "title": "Audi A4",
+    "description": "Audi basico",
+    "price": 3000,
+    "thumbnail": "sin imagen",
+    "stock": 15
+  },
+  {
+    "id": 3,
+    "title": "Audi",
+    "price": 1000
+  },
+  {
+    "id": 4,
+    "title": "Bmw X5",
+    "description": "Una suv muy linda",
+    "price": 50000,
+    "thumbnail": "sin imagen",
+    "stock": 4
+  },
+  {
+    "id": 5,
+    "title": "Bmw Serie 3",
+    "description": "Un sedan muy poco visto",
+    "price": 20000,
+    "thumbnail": "sin imagen",
+    "stock": 7
+  }
+]
