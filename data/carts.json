@@ -1,27 +1,96 @@
 [
   {
-    "producto": "Bmw Serie 3",
-    "quantity": 2,
-    "id": 1
+    "id": 1,
+    "productos": [
+      {
+        "title": "Bmw X5",
+        "quantity": 1
+      },
+      {
+        "title": "Alfa Romeo Giuletta",
+        "quantity": 1
+      }
+    ]
   },
   {
-    "producto": "Audi A4",
-    "quantity": 7,
-    "id": 2
+    "id": 2,
+    "productos": [
+      {
+        "title": "Chevrolet Camaro",
+        "quantity": 2
+      },
+      {
+        "idProducto": 4,
+        "title": "Bmw X5",
+        "quantity": 4
+      }
+    ]
   },
   {
-    "producto": "Audi R9",
-    "quantity": 1,
-    "id": 3
+    "id": 3,
+    "productos": [
+      {
+        "title": "Chevrolet Camaro",
+        "quantity": 5
+      },
+      {
+        "title": "Chevrolet Camaro",
+        "quantity": 1
+      },
+      {
+        "title": "Camaro",
+        "quantity": 1
+      },
+      {
+        "title": "Camaro",
+        "quantity": 1
+      },
+      {
+        "title": "Bmw X5",
+        "quantity": 1
+      }
+    ]
   },
   {
-    "producto": "Audi",
-    "quantity": 8,
-    "id": 4
+    "id": 4,
+    "productos": [
+      {
+        "title": "Alfa Romeo Giuletta",
+        "quantity": 1
+      },
+      {
+        "title": "Bmw X5",
+        "quantity": 5
+      },
+      {
+        "title": "Camaro",
+        "quantity": 26
+      }
+    ]
   },
   {
-    "producto": "Bmw X5",
-    "quantity": 3,
-    "id": 5
+    "id": 5,
+    "productos": [
+      {
+        "idProducto": 7,
+        "title": "Camaro",
+        "quantity": 1
+      },
+      {
+        "idProducto": 5,
+        "title": "Bmw Serie 3",
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "productos": [
+      {
+        "idProducto": 4,
+        "title": "Bmw X5",
+        "quantity": 1
+      }
+    ]
   }
 ]
