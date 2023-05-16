@@ -22,6 +22,7 @@ class ProductManager{
 
     async addProduct({title,description,price,thumbnail,stock}){
       try{
+        console.log("entre al add")
         const productExistente = this.products.find(product => product.title === title)
         if(productExistente){
           return 'Este producto ya se encuentra cargado'
@@ -48,16 +49,14 @@ class ProductManager{
 
     getProducts(){
       try{
+        console.log("entre al get ")
         if (this.products === []){
-          console.log('Not found')
           return 'Not found'
         } else{
-          console.log(this.products)
           return this.products
         }
         
       } catch(error){
-        console.log('Error al buscar productos')
         return 'Error al buscar productos'
       }
         
@@ -65,11 +64,17 @@ class ProductManager{
 
     getProductById(id){
       try{
-        const productExistente = this.products.find(product => product.id === id)
+        console.log("entre al get ID")
+        console.log(id)
+        let productExistente = this.products.find(product => product.id === id)
+        /* console.log(productExistente.id) */
         if(productExistente){
+          console.log('entre al if')
           return productExistente
         }else{
-          console.error('Not found')
+          console.log('entre al else')
+          return 'Not found'
+          
         }
       } catch (error){
         return 'Error al buscar producto'
@@ -79,6 +84,7 @@ class ProductManager{
 
     async updateProduct(id,product) {  
       try {
+        console.log("enrte al update")
           let productExistente = this.getProductById(id)
           if(productExistente){
             for (let prop in product) {
@@ -100,6 +106,7 @@ class ProductManager{
 
   async deleteProduct(id) {
     try {
+      console.log("entre al delete")
         if(this.getProductById(id)){
           this.products = this.products.filter(each=>each.id!==id)
           let productJson = JSON.stringify(this.products,null,2)
@@ -116,7 +123,6 @@ class ProductManager{
 }
 }
 
-let product = new ProductManager('./data/products.json')
-
+let product = new ProductManager('./src/data/products.json')
 
 export default product

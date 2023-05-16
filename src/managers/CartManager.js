@@ -1,5 +1,6 @@
 import fs from 'fs'
 import product from './ProductManager.js'
+
 class CartManager {
   constructor(path) {
     this.carts = [];
@@ -23,9 +24,12 @@ class CartManager {
 
   async updateCart(cartId, productId, units) {
     try {
+      console.log("entre al cart update")
       let cartExistente = this.getCartById(cartId)
       if(cartExistente){
+        console.log(Number(productId))
         let producto = product.getProductById(productId)
+        console.log(units)
       if(units <= producto.stock){
         let updateStock = producto.stock - units
         await product.updateProduct(productId, {stock:updateStock})
@@ -62,7 +66,8 @@ class CartManager {
   }  
 
  async addCart(){
-    let data = {}
+  console.log("entre al cart add")
+    let data = {productos:[]}
     if (this.carts.length>0) {
       let next_id = this.carts[this.carts.length-1].id+1
       data.id = next_id
@@ -77,6 +82,7 @@ class CartManager {
   }
 
   getCarts(){
+    console.log("entre al cart get")
     try{
       if (this.carts === []){
         console.log('Not found')
@@ -93,20 +99,23 @@ class CartManager {
   }
 
   getCartById(cid){
+    console.log("entre al cart get ID")
+
     try{
       const cartExistente = this.carts.find(cart => cart.id === cid)
       if(cartExistente){
         return cartExistente
       }else{
-        console.error('Cart Not found')
+        return console.log('Cart Not found')
       }
     } catch (error){
-      console.log('Error al buscar el carrito')
       return 'Error al buscar el carrito'
     }  
   } 
 
   async deleteCart(cId,pId,units){
+    console.log("entre al cart delete")
+
     let cartExistente = this.getCartById(cId)
     if(cartExistente){
       let productInCart = this.getProductInCartById(cId, pId)
@@ -133,6 +142,8 @@ class CartManager {
   }
 
   getProductInCartById(cartId, productId) {
+    console.log("entre al cart get Product in Cart")
+
     const cart = this.getCartById(cartId)
     if (cart && cart.productos) {
       const productInCart = cart.productos.find(p => p.idProducto === productId)
@@ -146,6 +157,6 @@ class CartManager {
   }
   
 }
-let cart = new CartManager('./data/carts.json')
+let cart = new CartManager('./src/data/carts.json')
 
 export default cart

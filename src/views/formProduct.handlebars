@@ -1,0 +1,35 @@
+<div class="container">
+  <form action="/api/products" id="productForm" method="POST" class="row g-3 container">
+    <div class="col-md-6">
+      <label for="title" class="form-label">Titulo</label>
+      <input type="text" id="title" class="form-control" name="title" required>
+    </div>
+    <div class="col-12">
+      <label for="description" class="form-label">Descripcion</label>
+      <input type="text" class="form-control" id="description" name="description" required>
+    </div>
+    <div class="col-md-6" >
+      <label for="thumbnail" class="form-label">Thumbnail</label>
+      <input type="file" class="form-control-file" id="thumbnail" name="thumbnail" disabled>
+    </div>
+    <div class="col-md-4">
+      <label for="price" class="form-label">Precio</label>
+      <input type="number" class="form-control" id="price" name="price" required>
+    </div>
+    <div class="col-md-2">
+      <label for="stock" class="form-label">Stock</label>
+      <input type="number" class="form-control" id="stock" name="stock" required>
+    </div>
+    <div class="col-12">
+      <button type="submit" id="liveAlertBtn" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const productForm = document.getElementById('productForm');
+  
+  productForm.addEventListener('submit', (event) => {
+    alert('Producto Creado correctamente');
+  });
+</script>
