@@ -1,0 +1,93 @@
+<div class="contaniner text-center">
+<div class="row justify-content-evenly">
+{{#each productos}}
+<div class="card col-6" style="width: 30rem; margin: 2rem">
+  <div class="card-body">
+    <h5 class="card-title">{{this.title}}</h5>
+    <h6 class="card-title">Cantidad actual: {{this.quantity}}</h6>
+    <h6 class="card-title id" data-id="{{this.idProducto}}" hidden>{{this.idProducto}}</h6>
+    <input type="number" class="form-control" id="idProducto" value="{{this.idProducto}}" hidden>
+    <label for="quantity" class="form-label">Cantidad</label>
+      <input type="number" class="form-control" id="quantity"  required>
+    <button id="add-to-cart-btn" class="btn btn-primary" style="margin-top: 10px;">Agregar</button>
+    <button id="delete-to-cart-btn" class="btn btn-danger" style="margin-top: 10px;">Sacar</button>
+  </div>
+</div>
+
+{{/each}} 
+</div>
+</div>
+<script>
+
+const addToCartBtns = document.querySelectorAll('#add-to-cart-btn');
+const deleteToCartBtns = document.querySelectorAll('#delete-to-cart-btn');
+
+
+addToCartBtns.forEach((btn, index) => {
+  btn.addEventListener('click', async () => {
+    const input = document.querySelectorAll('#quantity')[index];
+    const quantity = parseInt(input.value);
+    const inputId = document.querySelectorAll('#idProducto')[index];
+    const id = parseInt(inputId.value)
+    console.log(quantity)
+    console.log(id)
+    if (quantity >= 1) {
+      try {
+        const response = await fetch(`/api/carts/1/products/${id}/${quantity}`, { method: 'PUT' });
+        if (response.status === 200) {
+          const result = await response.json();
+          console.log('Producto agregado al carrito:', result);
+          location.reload();
+          input.value = '';
+        } else {
+          console.error('Error al agregar el producto al carrito');
+          location.reload();
+        }
+      } catch (error) {
+        console.error('Error de conexión al agregar el producto al carrito:', error);
+        location.reload();
+
+      }
+    } else {
+      console.error('La cantidad no es válida');
+      location.reload();
+    }
+  });
+});
+
+
+deleteToCartBtns.forEach((btn, index) => {
+  btn.addEventListener('click', async () => {
+    const input = document.querySelectorAll('#quantity')[index];
+    const quantity = parseInt(input.value);
+    const inputId = document.querySelectorAll('#idProducto')[index];
+    const id = parseInt(inputId.value)
+    console.log(quantity)
+    console.log(id)
+
+    if (quantity >= 1) {
+      try {
+        const response = await fetch(`/api/carts/1/products/${id}/${quantity}`, { method: 'DELETE' });
+        if (response.status === 200) {
+          const result = await response.json();
+          console.log('Producto eliminado del carrito:', result);
+          location.reload();
+          input.value = '';
+        } else {
+          console.error('Error al eliminar el producto del carrito');
+          location.reload();
+
+        }
+      } catch (error) {
+        console.error('Error de conexión al eliminar el producto del carrito:', error);
+        location.reload();
+
+      }
+    } else {
+      console.error('La cantidad no es válida');
+      location.reload();
+    }
+  });
+});
+
+</script>

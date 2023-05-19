@@ -5,7 +5,7 @@
     "description": "Esta nueva gama de audi es deportiva",
     "price": 80000,
     "thumbnail": "sin imagen",
-    "stock": 10
+    "stock": 8
   },
   {
     "id": 3,
@@ -13,7 +13,7 @@
     "price": 100000,
     "description": "Un auto aleman muy elegante",
     "thumbnail": "sin imagen",
-    "stock": 13
+    "stock": 11
   },
   {
     "id": 4,
@@ -21,7 +21,7 @@
     "description": "Una suv muy linda",
     "price": 50000,
     "thumbnail": "sin imagen",
-    "stock": 2
+    "stock": 6
   },
   {
     "id": 5,
@@ -41,8 +41,8 @@
   },
   {
     "id": 7,
-    "title": "Camaro",
-    "description": "asdas",
+    "title": "Chevrolet Camaro",
+    "description": "El verdadero american muscle",
     "price": 1000,
     "thumbnail": "no tiene",
     "stock": 10
