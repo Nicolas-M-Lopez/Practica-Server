@@ -1,6 +1,6 @@
 import { Router } from "express";
-import cart_router from "./cartRoute.js";
-import product_router from "./productRoute.js";
+import cart_router from "./cartRoute.mongo.js";
+import product_router from "./productRoute.mongo.js";
 
 const index_api_router = Router()
 

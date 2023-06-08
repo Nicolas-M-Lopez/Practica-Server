@@ -6,6 +6,7 @@ import index_router from "./routes/index.js";
 import { __dirname } from "./utils.js";
 import { engine } from "express-handlebars";
 import logger from "morgan"
+import { connect } from 'mongoose'
 
 
 
@@ -28,6 +29,8 @@ server.use(error_handler)
 server.use(not_found_handler)
 
 
-
-
+ //database (link de la database)
+ connect()
+    .then(()=>console.log('database connected'))
+    .catch(err => console.log(err))
 export default server
