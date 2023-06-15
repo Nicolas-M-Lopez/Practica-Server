@@ -5,6 +5,7 @@
       <p class="card-text">{{one.description}}</p>
       <h6>Price: ${{one.price}}</h6>
       <h6>Stock: {{one.stock}}</h6>
+      <h6>Stock: {{one._id}}</h6>
       <label for="unit" class="form-label">Cantidad</label>
         <input type="number" class="form-control" id="unit" min="1" max="{{one.stock}}" required>
       <button id="add-to-cart-btn" class="btn btn-primary" style="margin-top: 10px;">Agregar al carrito</button>
@@ -19,10 +20,10 @@ const addToCartBtn = document.querySelector('#add-to-cart-btn');
 
 addToCartBtn.addEventListener('click', () => {
   const units = Number(unitsInput.value);
-  const id = Number({{one.id}})
+  let id = '{{one._id}}'
   const stock = Number({{one.stock}})
-  const actionUrl = `/api/carts/1/products/${id}/${units}`;
-
+  const actionUrl = `/api/carts/6480e25e369065f0073640e0/products/${id}/${units}`;
+ console.log(id,stock, units)
   const xhr = new XMLHttpRequest();
   if(units >= 1 && units < stock ){
   xhr.open('PUT', actionUrl);
@@ -31,7 +32,7 @@ addToCartBtn.addEventListener('click', () => {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         console.log('Producto agregado al carrito exitosamente');
-        window.location.href = 'http://localhost:8080/carts/1';
+        window.location.href = 'http://localhost:8080/carts/6480e25e369065f0073640e0';
       } else {
         console.error('Error al agregar el producto al carrito');
       }

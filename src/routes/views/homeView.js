@@ -6,9 +6,7 @@ home_view_router.get('/', async(req,res,next) => {
     try {
         const response = await fetch(`http://localhost:8080/api/carts/6480e25e369065f0073640e0`)
         const data = await response.json()
-        return res.render('home', {
-            cart: data//.carrito.productos.length,
-        })
+        return res.render('home', {})
     } catch (error) {
       next(error)  
     }

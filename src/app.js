@@ -30,7 +30,7 @@ server.use(not_found_handler)
 
 
  //database (link de la database)
- connect()
+ connect('mongodb+srv://nicolas:nicolas1@clusterpersonal.79mepts.mongodb.net/commerce')
     .then(()=>console.log('database connected'))
     .catch(err => console.log(err))
 export default server
