@@ -1,11 +1,9 @@
-import mongoose from 'mongoose';
-const {Schema, model} = mongoose
-
+import { model,Schema,Types } from 'mongoose'
 let collection = 'carts'
 let schema = new Schema({
     productos: [{
-        productId: {type: mongoose.Schema.Types.ObjectId},
-        quantity: {type: Number}
+        productId: {type:Types.ObjectId,required:true,ref:'products' },
+        quantity: {type: Number, required:true}
     }]
        
 })

@@ -6,8 +6,13 @@ const product_router = Router ()
 
 product_router.get('/', async(req,res,next)=>{
     try{ 
-        let products = await Product.find()
-        if(products.length > 0){
+        const titleRegex = new RegExp(req.query.title, 'i');
+        let page = 1
+        let limit = 6
+        if (req.query.page > 0) { page = req.query.page }
+        if (req.query.limit > 0) { limit = req.query.limit }
+        let products = await Product.paginate({title: titleRegex}, {limit, page})
+        if(products.totalDocs > 0){
             return res.json({ status:200,products })
         } else {
             let message = 'not found'
@@ -23,6 +28,7 @@ product_router.get('/:pid', async(req,res,next)=>{
         console.log("entre al route product get id")
         let parametros = req.params
         let id = parametros.pid
+        console.log(id)
         let one = await Product.findById(id)
         if(one){
             return res.json({ status:200,one })

@@ -6,13 +6,15 @@ cart_view_router.get('/:cid', async (req,res,next) => {
     try {
         const response = await fetch(`http://localhost:8080/api/carts/6480e25e369065f0073640e0`)
         const data = await response.json()
-        console.log(data.response.productos)
+        const responseTotal = await fetch(`http://localhost:8080/api/carts/bills/6480e25e369065f0073640e0`)
+        const dataTotal = await responseTotal.json()
+        /* console.log(data.response.productos) */
         return res.render(
             'cart',
             {
                 productos: data.response.productos,
                 title: "carrito",
-                //cart: data.one.productos.length
+                total: dataTotal.response
             }
             )
     } catch (error) {

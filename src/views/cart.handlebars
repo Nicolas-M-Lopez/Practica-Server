@@ -3,18 +3,18 @@
 {{#each productos}}
 <div class="card col-6" style="width: 30rem; margin: 2rem">
   <div class="card-body">
-    <h5 class="card-title">{{this.productId}}</h5>
+    <h5 class="card-title">{{this.productId.title}}</h5>
     <h6 class="card-title">Cantidad actual: {{this.quantity}}</h6>
-    <h6 class="card-title id" data-id="{{this.idProducto}}" hidden>{{this.idProducto}}</h6>
-    <input type="number" class="form-control" id="idProducto" value="{{this.idProducto}}" hidden>
+    <h6 class="card-title id" data-id="{{this.productId._id}}" >{{this.productId._id}}</h6>
+    <input class="form-control" id="_id" value="{{this.productId._id}}" hidden>
     <label for="quantity" class="form-label">Cantidad</label>
       <input type="number" class="form-control" id="quantity"  required>
     <button id="add-to-cart-btn" class="btn btn-primary" style="margin-top: 10px;">Agregar</button>
     <button id="delete-to-cart-btn" class="btn btn-danger" style="margin-top: 10px;">Sacar</button>
   </div>
 </div>
-
-{{/each}} 
+{{/each}}
+<h6>Total: ${{total}}</h6> 
 </div>
 </div>
 <script>
@@ -27,13 +27,11 @@ addToCartBtns.forEach((btn, index) => {
   btn.addEventListener('click', async () => {
     const input = document.querySelectorAll('#quantity')[index];
     const quantity = parseInt(input.value);
-    const inputId = document.querySelectorAll('#idProducto')[index];
-    const id = parseInt(inputId.value)
-    console.log(quantity)
-    console.log(id)
+    const inputId = document.querySelectorAll('#_id')[index];
+    const id = inputId.value
     if (quantity >= 1) {
       try {
-        const response = await fetch(`/api/carts/1/products/${id}/${quantity}`, { method: 'PUT' });
+        const response = await fetch(`/api/carts/6480e25e369065f0073640e0/products/${id}/${quantity}`, { method: 'PUT' });
         if (response.status === 200) {
           const result = await response.json();
           console.log('Producto agregado al carrito:', result);
@@ -60,14 +58,12 @@ deleteToCartBtns.forEach((btn, index) => {
   btn.addEventListener('click', async () => {
     const input = document.querySelectorAll('#quantity')[index];
     const quantity = parseInt(input.value);
-    const inputId = document.querySelectorAll('#idProducto')[index];
-    const id = parseInt(inputId.value)
-    console.log(quantity)
-    console.log(id)
-
+    const inputId = document.querySelectorAll('#_id')[index];
+    const id = inputId.value
+  
     if (quantity >= 1) {
       try {
-        const response = await fetch(`/api/carts/1/products/${id}/${quantity}`, { method: 'DELETE' });
+        const response = await fetch(`/api/carts/6480e25e369065f0073640e0/products/${id}/${quantity}`, { method: 'DELETE' });
         if (response.status === 200) {
           const result = await response.json();
           console.log('Producto eliminado del carrito:', result);
