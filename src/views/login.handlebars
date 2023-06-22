@@ -1,0 +1,44 @@
+<div class="container">
+  <form action="/api/auth/login" id="registerForm" method="POST" class="row g-3 container">
+    <div class="col-md-6" >
+      <label for="email" class="form-label">Direccion de correo electronico</label>
+      <input type="text" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="col-md-6" >
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="text" class="form-control" id="password" minlength="8" name="password" required>
+    </div>
+    <div class="col-12">
+      <button type="submit" id="liveAlertBtn" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const registerForm = document.getElementById('registerForm');
+
+  registerForm.addEventListener('submit', async (event) => {
+    event.preventDefault()
+    const emailInput = document.getElementById('email')
+    const passwordInput = document.getElementById('password')
+    const email = emailInput.value
+    const password = passwordInput.value
+
+    const response = await fetch('http://localhost:8080/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json()
+
+    if (response.status === 200) {
+      alert('Usuario logueado correctamente')
+      window.location.href = '/'
+    } else {
+      alert('Usuario incorrecto')
+    }
+  });
+</script>
