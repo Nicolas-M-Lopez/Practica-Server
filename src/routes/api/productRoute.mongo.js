@@ -25,7 +25,6 @@ product_router.get('/', async(req,res,next)=>{
 
 product_router.get('/:pid', async(req,res,next)=>{
     try{
-        console.log("entre al route product get id")
         let parametros = req.params
         let id = parametros.pid
         console.log(id)
@@ -43,7 +42,6 @@ product_router.get('/:pid', async(req,res,next)=>{
 
 product_router.post('/', async (req,res,next)=>{
     try{
-        console.log("entre al route product post")
     let response = await Product.create(req.body)
     if (response) {
         return res.redirect('http://localhost:8080/products')
@@ -56,7 +54,6 @@ product_router.post('/', async (req,res,next)=>{
 
 product_router.put('/:pid', async(req,res,next) => {
     try{
-        console.log("entre al route product put")
         let idParam = req.params
         let id = idParam.pid
         let response = await Product.findByIdAndUpdate(id, req.body, {new:true})
@@ -72,7 +69,6 @@ product_router.put('/:pid', async(req,res,next) => {
 
 product_router.delete('/:pid', async(req,res,next) => {
     try{
-        console.log("entre al route product delete")
         let idParam = req.params
         let id = idParam.pid
         let response = await Product.findByIdAndDelete(id)

@@ -1,0 +1,39 @@
+<div class="container">
+  <form action="/api/auth/register" id="registerForm" method="POST" class="row g-3 container">
+    <div class="col-md-6">
+      <label for="name" class="form-label">Nombre</label>
+      <input type="text" id="name" class="form-control" name="name" required>
+    </div>
+    <div class="col-md-6" >
+      <label for="email" class="form-label">Direccion de correo electronico</label>
+      <input type="text" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="col-md-6" >
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="text" class="form-control" id="password" minlength="8" name="password" required>
+    </div>
+    <div class="col-4">
+      <label for="photo" class="form-label">Foto de perfil</label>
+      <input type="file" class="form-control-file" id="photo" name="photo" disabled>
+    </div>
+    <div class="col-md-4">
+      <label for="age" class="form-label">Edad</label>
+      <input type="number" class="form-control" id="age" name="age">
+    </div>
+    <div class="col-md-2">
+      <label for="role" class="form-label">Rol</label>
+      <input type="number" class="form-control" id="role" name="role" required>
+    </div>
+    <div class="col-12">
+      <button type="submit" id="liveAlertBtn" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const registerForm = document.getElementById('registerForm');
+  
+  registerForm.addEventListener('submit', (event) => {
+    alert('Usuario Creado correctamente');
+  });
+</script>

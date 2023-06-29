@@ -1,11 +1,18 @@
 import server from "./app.js"
+import { connect } from "mongoose"
 import { Server } from "socket.io"
 
-const PORT = process.env.PORT || 8080
-const ready = () => console.log('Server ready on '+PORT)
+
+const port = process.env.PORT || 8080
+const ready = () => {
+  console.log('Server ready on '+port)
+  connect(process.env.LINK_MONGO)
+    .then(()=>console.log('database connected'))
+    .catch(err => console.log(err))
+}
 
 const chat = []
-let http_server = server.listen(PORT, ready)
+let http_server = server.listen(port, ready)
 let socket_server = new Server(http_server)
 
 socket_server.on(
