@@ -3,36 +3,34 @@ import User from "../../models/user.model.js";
 import validator from "../../middlewares/validator.js";
 import pass_is_8 from "../../middlewares/pass_is_8.js";
 import login_validator from "../../middlewares/login_validator.js";
+import create_hash from "../../middlewares/create_hash.js";
+import is_valid_password from "../../middlewares/is_valid_password.js";
+import passport from "passport";
 
 const auth_router = Router()
 
-auth_router.post('/register', validator, pass_is_8, async(req,res,next)=>{
-    try {
-        await User.create(req.body)
-        return res.status(201).redirect('http://localhost:8080/')
-    } catch (error) {
-        next(error)
-    }
-})
+auth_router.post('/register', validator, pass_is_8, create_hash, passport.authenticate(
+    'register',
+    { failureRedirect: '/api/auth/fail-register' } //objeto de configuracion de la ruta de redireccionamiento en caso de error
+    ), 
+    (req,res) => res.status(201).redirect('http://localhost:8080/')  
+)
 
+auth_router.get('/fail-register', (req,res)=> res.status(400).json({
+    success: false,
+    message: 'error auth'
+}))
 
-auth_router.post('/login', login_validator, pass_is_8, async(req,res,next)=>{
+auth_router.post('/login', login_validator, pass_is_8, passport.authenticate('/signin', {failureRedirect: '/api/auth/fail-signin'}), is_valid_password, 
+(req,res,next)=>{
     try {
         const {email} = req.body
-        const one = await User.findOne({email})
-        if(one){
             req.session.email = email
-            req.session.role = one.role
+            req.session.role = req.user.role
             return res.status(200).json({
                 success: true,
                 message: 'user signed in'
             })
-        } else {
-            return res.status(404).json({
-                success: false,
-                message: 'user not found'
-            })
-        }
     } catch (error) {
         next(error)
     }
