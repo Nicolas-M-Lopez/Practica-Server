@@ -1,5 +1,5 @@
 <div class="container">
-  <form action="/api/auth/login" id="registerForm" method="POST" class="row g-3 container">
+  <form action="/api/auth/signin" id="registerForm" method="POST" class="row g-3 container">
     <div class="col-md-6" >
       <label for="email" class="form-label">Direccion de correo electronico</label>
       <input type="text" class="form-control" id="email" name="email" required>
@@ -23,22 +23,28 @@
     const passwordInput = document.getElementById('password')
     const email = emailInput.value
     const password = passwordInput.value
-
-    const response = await fetch('http://localhost:8080/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, password })
+let data = {
+  email: email,
+  password: password
+}
+    fetch(`/api/auth/signin`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+        .then(res=>res.json())
+        .then(res => {
+      if (res.success) {
+        alert('¡Usuario logueado correctamente!');
+        window.location.href = 'http://localhost:8080'; // Redirige a localhost:8080
+      } else {
+        alert('Algo salió mal. Por favor, verifique sus credenciales.');
+        registerForm.reset(); // Refresca el formulario
+      }
+    })
+    .catch(err => {
+      alert('Error en la solicitud. Por favor, inténtelo de nuevo.');
     });
 
-    const data = await response.json()
-
-    if (response.status === 200) {
-      alert('Usuario logueado correctamente')
-      window.location.href = '/'
-    } else {
-      alert('Usuario incorrecto')
-    }
   });
 </script>

@@ -1,5 +1,5 @@
 <div class="container">
-  <form action="/api/auth/register" id="registerForm" method="POST" class="row g-3 container">
+  <form  id="registerForm" class="row g-3 container">
     <div class="col-md-6">
       <label for="name" class="form-label">Nombre</label>
       <input type="text" id="name" class="form-control" name="name" required>
@@ -20,20 +20,43 @@
       <label for="age" class="form-label">Edad</label>
       <input type="number" class="form-control" id="age" name="age">
     </div>
-    <div class="col-md-2">
-      <label for="role" class="form-label">Rol</label>
-      <input type="number" class="form-control" id="role" name="role" required>
-    </div>
     <div class="col-12">
-      <button type="submit" id="liveAlertBtn" class="btn btn-primary">Submit</button>
+      <button type="button" id="liveAlertBtn" class="btn btn-primary">Submit</button>
+      <a class="btn btn-dark" href="http://localhost:8080/api/auth/github">Registrarse con GitHub</a>
     </div>
   </form>
+  
 </div>
 
 <script>
-  const registerForm = document.getElementById('registerForm');
-  
-  registerForm.addEventListener('submit', (event) => {
-    alert('Usuario Creado correctamente');
+  const registerForm = document.getElementById('liveAlertBtn');
+  const responseMessage = document.getElementById('responseMessage');
+
+  registerForm.addEventListener('click', async (event) => {
+    event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+
+    let data = {
+        name: document.querySelector('#name').value,
+        photo: document.querySelector('#photo').value,
+        age: document.querySelector('#age').value,
+        email: document.querySelector('#email').value,
+        password: document.querySelector('#password').value,
+    }
+    const response = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const datas = await response.json();
+    if (response.ok && datas.success) {
+      alert(datas.message);
+      window.location.href = 'http://localhost:8080';
+    } else {
+      // Verifica si la respuesta contiene un mensaje de error personalizado
+      const errorMessage = datas && datas.message ? datas.message : 'Error al registrar el usuario';
+      alert(errorMessage);
+      document.getElementById('registerForm').reset();
+    }
   });
 </script>
+

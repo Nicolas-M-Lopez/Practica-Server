@@ -9,7 +9,7 @@ import { engine } from "express-handlebars";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import passport from "passport";
-import initialazePassport from 'passport-local.js'
+import initialazePassport from './config/passport_local.js'
 
 
 const server = express()
