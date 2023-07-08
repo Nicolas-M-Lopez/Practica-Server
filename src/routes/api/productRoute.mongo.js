@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Product from "../../models/product.model.js";
-
+import authorization from "../../middlewares/authorization.js";
 
 const product_router = Router ()
 

@@ -18,7 +18,7 @@ index_views_router.use('/carts', cart_view_router)
 index_views_router.use('/new_product', form_product_router)
 index_views_router.use('/chatbot', chatbot_view_router)
 index_views_router.use('/register', register_view_router)
-index_views_router.use('/login', login_view_router)
+index_views_router.use('/signin', login_view_router)
 
 index_views_router.use('/', home_view_router)
 index_views_router.use('/logout', logout_view_router)

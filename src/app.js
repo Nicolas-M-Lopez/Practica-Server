@@ -8,6 +8,8 @@ import { __dirname } from "./utils.js";
 import { engine } from "express-handlebars";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+import passport from "passport";
+import initialazePassport from './config/passport_local.js'
 
 
 const server = express()
@@ -30,11 +32,14 @@ server.use('/public', express.static('public'))
 server.use(express.json())
 server.use(express.urlencoded({extended:true}))
 server.use(morgan('dev'))
+initialazePassport()
+server.use(passport.initialize())
+server.use(passport.session())
 
 
 server.use('/', index_router)
 server.use(error_handler)
 server.use(not_found_handler)
 
-
+ 
 export default server
