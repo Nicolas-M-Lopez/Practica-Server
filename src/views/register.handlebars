@@ -1,8 +1,12 @@
 <div class="container">
   <form  id="registerForm" class="row g-3 container">
     <div class="col-md-6">
-      <label for="name" class="form-label">Nombre</label>
-      <input type="text" id="name" class="form-control" name="name" required>
+      <label for="first_name" class="form-label">Nombre</label>
+      <input type="text" id="first_name" class="form-control" name="first_name" required>
+    </div>
+    <div class="col-md-6">
+      <label for="last_name" class="form-label">Apellido</label>
+      <input type="text" id="last_name" class="form-control" name="last_name">
     </div>
     <div class="col-md-6" >
       <label for="email" class="form-label">Direccion de correo electronico</label>
@@ -11,10 +15,6 @@
     <div class="col-md-6" >
       <label for="password" class="form-label">Contraseña</label>
       <input type="text" class="form-control" id="password" minlength="8" name="password" required>
-    </div>
-    <div class="col-4">
-      <label for="photo" class="form-label">Foto de perfil</label>
-      <input type="file" class="form-control-file" id="photo" name="photo" disabled>
     </div>
     <div class="col-md-4">
       <label for="age" class="form-label">Edad</label>
@@ -33,11 +33,11 @@
   const responseMessage = document.getElementById('responseMessage');
 
   registerForm.addEventListener('click', async (event) => {
-    event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+    event.preventDefault(); 
 
     let data = {
-        name: document.querySelector('#name').value,
-        photo: document.querySelector('#photo').value,
+        first_name: document.querySelector('#first_name').value,
+        last_name: document.querySelector('#last_name').value,
         age: document.querySelector('#age').value,
         email: document.querySelector('#email').value,
         password: document.querySelector('#password').value,
@@ -52,7 +52,6 @@
       alert(datas.message);
       window.location.href = 'http://localhost:8080';
     } else {
-      // Verifica si la respuesta contiene un mensaje de error personalizado
       const errorMessage = datas && datas.message ? datas.message : 'Error al registrar el usuario';
       alert(errorMessage);
       document.getElementById('registerForm').reset();
