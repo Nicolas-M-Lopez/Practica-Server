@@ -5,7 +5,7 @@
 
   const logoutBtn = document.getElementById('logoutBtn')
  const email = "{{email}}"
- console.log(email)
+ 
 logoutBtn.addEventListener('click', async () => {
   try {
     const response = await fetch('/api/auth/signout', {
@@ -21,6 +21,7 @@ logoutBtn.addEventListener('click', async () => {
       alert('Usario desconectado')
       window.location.href = '/'
     } else {
+      console.log('hola')
       alert(data.message)
     }
   } catch (error) {

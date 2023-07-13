@@ -5,7 +5,7 @@ const logout_view_router = Router()
 logout_view_router.get('/', async (req,res,next) => {
     try {
         return res.render('logout', {
-            email: req.session.email
+            email: req.session.cookie
         })
     } catch (error) {
         next(error)

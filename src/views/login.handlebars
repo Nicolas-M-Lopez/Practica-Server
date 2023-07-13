@@ -34,7 +34,7 @@ let data = {
     })
         .then(res=>res.json())
         .then(res => {
-      if (res.success) {
+      if (res.token) {
         alert('¡Usuario logueado correctamente!');
         window.location.href = 'http://localhost:8080'; // Redirige a localhost:8080
       } else {

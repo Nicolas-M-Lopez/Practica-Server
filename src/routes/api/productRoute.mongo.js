@@ -1,10 +1,12 @@
 import { Router } from "express";
 import Product from "../../models/product.model.js";
-import authorization from "../../middlewares/authorization.js";
+import passport from "passport";
+import passport_call from "../../middlewares/passport_call.js";
+
 
 const product_router = Router ()
 
-product_router.get('/', async(req,res,next)=>{
+product_router.get('/', passport_call('jwt'),async(req,res,next)=>{
     try{ 
         const titleRegex = new RegExp(req.query.title, 'i');
         let page = 1
